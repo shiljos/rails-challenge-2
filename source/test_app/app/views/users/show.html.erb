@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>About:</strong>
+  <%= @user.about %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+    <h1>Active stories</h1>
+
+    <% @active_story.each do |active_story| %>
+      <div class="active">
+        <ul>
+          <li class="sus"><%= active_story.title %></li>
+          <li class="sus"><%= active_story.created_at %></li>
+          <li class="sus"><%= active_story.comments.count %></li>
+        </ul>
+      </div>
+    <%end%>
+
+    <h1> Inactive stories </h1>
+    
+    <%@innactive_story.each do |innactive_story|%>
+      <div class="innactive">
+      <ul>
+        <li class="sus"><%= innactive_story.title %></li>
+        <li class="sus"><%= innactive_story.created_at %></li>
+        <li class="sus"><%= innactive_story.comments.count %></li>
+        <li class="sus">
+          <%= form_for(innactive_story) do |f| %>
+            <%= f.label :active, "active#{innactive_story.id}"%>
+            <%= f.check_box :active %>
+            <%= f.submit "Activate story", class: "btn btn-large btn-primary" %>
+          <%end%>
+        </li>
+      </ul>
+      </div>  
+    <%end%>
+
+
+    <h1> Commented stories </h1>
+
+      <% @comment_story.each do |comment|%>
+        <div class="commented">
+          <ul>
+            <li class="bom"><%= comment.story.title %></li>
+            <li class="bom"><%= comment.story.created_at %></li>
+            <li class="bom"><%= comment.comment %></li>
+          </ul>
+        </div>
+      <%end%>
+    
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
