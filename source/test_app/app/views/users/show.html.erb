@@ -42,14 +42,14 @@
     <%@innactive_story.each do |innactive_story|%>
       <div class="innactive">
       <ul>
-        <li class="sus"><%= innactive_story.title %></li>
-        <li class="sus"><%= innactive_story.created_at %></li>
-        <li class="sus"><%= innactive_story.comments.count %></li>
-        <li class="sus">
+        <li class="inn"><%= innactive_story.title %></li>
+        <li class="inn"><%= innactive_story.created_at %></li>
+        <li class="inn"><%= innactive_story.comments.count %></li>
+        <li class="inn">
           <%= form_for(innactive_story) do |f| %>
             <%= f.label :active, "active#{innactive_story.id}"%>
-            <%= f.check_box :active %>
-            <%= f.submit "Activate story", class: "btn btn-large btn-primary" %>
+            <%= f.check_box :active, {:id => "mycheckbox-#{innactive_story.id}"} %>
+            <%= f.submit "Activate story #{innactive_story.id}", class: "btn btn-large btn-primary" %>
           <%end%>
         </li>
       </ul>
